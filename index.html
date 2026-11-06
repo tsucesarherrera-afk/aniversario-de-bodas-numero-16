@@ -455,31 +455,6 @@
             text-shadow: 0 2px 12px rgba(0,0,0,0.5);
         }
 
-        /* Botón de silenciar música */
-        .music-toggle {
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.35);
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 60;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-        }
-
-        .music-toggle:hover { transform: scale(1.1); background: rgba(255,255,255,0.3); }
-
         @media (max-width: 768px) {
             .welcome-title { font-size: 3.4rem; }
             .welcome-number { font-size: 0.85rem; letter-spacing: 5px; }
@@ -499,7 +474,6 @@
             .controls { gap: 1rem; }
             .control-btn { width: 48px; height: 48px; font-size: 1rem; }
             .play-btn { width: 66px; height: 66px; font-size: 1.5rem; }
-            .music-toggle { width: 44px; height: 44px; font-size: 1rem; top: 12px; right: 12px; }
         }
     </style>
 <base target="_blank">
@@ -531,8 +505,6 @@
         <div id="bg-overlay"></div>
         <div id="bg-polaroids"></div>
         <div id="sparkles"></div>
-
-        <button class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="Música" aria-label="Activar o silenciar la música">🔊</button>
 
         <div class="gallery-content">
             <div class="glass-card">
@@ -777,14 +749,6 @@
                 p.catch(() => { musicStarted = false; });
             }
             fadeInMusic(0.55, 2800, delayMs);
-        }
-
-        function toggleMusic() {
-            const btn = document.getElementById('music-toggle');
-            if (!musicStarted) { startMusic(0); btn.textContent = '🔊'; return; }
-            audioEl.muted = !audioEl.muted;
-            btn.textContent = audioEl.muted ? '🔇' : '🔊';
-            btn.title = audioEl.muted ? 'Activar música' : 'Silenciar música';
         }
 
         /* ====== NAVEGACIÓN Y GALERÍA ====== */
